@@ -1,0 +1,178 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Mitr', sans-serif;
+  padding-bottom: 5rem;
+  background-color: #efefef; 
+}
+header{
+  background-image: linear-gradient(to right, #26a626 , #36d6a9);
+  height: 50px;
+  margin-top: 0%;
+  color: #fff;
+}
+.logoifpb{
+  width: 75%;
+  margin: auto;
+  padding-top: 0.5rem;
+  display: flex;
+  flex-direction: row;
+}
+.logoif {
+  height: 30px;
+  text-align: center;
+}
+/*
+.filtro{
+  height: 315px;
+  background-image: linear-gradient(to right,rgba(54, 214, 214, .6), rgba(54,214,169,1))/*, url(../img/6394.jpg)*/;/*
+  background-position-x: -300px;
+  background-position-y: -100px;
+  background-size: 123%;
+  background-attachment: fixed;
+  /* background-repeat: no-repeat; */
+/*  
+}*/
+.input-group{
+  width: 35%;
+}
+.input-group>input{
+  flex: 1;
+  border: none;
+}
+
+
+h1 {
+  text-align: center;
+  font-weight: 100;
+}
+
+.input_nome{
+  width: 200px;
+  height: 40px;
+  text-align: center;
+  /* background: #3abfbe; */
+  border-bottom:#efefef;
+}
+.filtros{
+  text-align: center;
+  margin-top: 20px;
+}
+.mx-sm-3{
+  width: 200px;
+  /* background-color: #3abfbe; */
+  color: #fff;
+  border-color: #efefef;
+}
+
+
+.egressos {
+  display: grid;
+  grid-template-columns: 300px;
+  grid-gap: 2rem;
+  justify-content: center;
+}
+
+@media (min-width: 610px) {
+  .egressos {
+    grid-template-columns: repeat(2, 300px);
+  }
+}
+
+@media (min-width: 910px) {
+  .egressos {
+    grid-template-columns: repeat(3, 300px);
+  }
+}
+
+@media (min-width: 1920px) {
+  .egressos {
+    grid-template-columns: repeat(4, 300px);
+  }
+}
+
+.egresso {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  transition: all .4s;
+  /* border-radius: 500px; */
+  overflow: hidden;
+}
+
+.egresso:hover {
+  transform: scale(1.1);
+}
+
+.egresso figure {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: .4;
+  transition: all .4s;
+}
+
+.egresso figure img {
+  height: 100%;
+}
+
+.egresso:hover figure {
+  opacity: 1;
+}
+
+.egresso .info {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(123, 208, 193, .15);
+  transition: all .4s;
+}
+
+.egresso .icons {
+  position: absolute;
+  bottom: 10px;
+  text-align: center;
+  width: 98%;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+.egresso .name {
+  position: absolute;
+  bottom: 60px;
+  text-align: center;
+  width: 98%;
+  margin: 0 auto;
+  color: #fff;
+}
+
+.egresso .icons a {
+  margin-left: 10px;
+}
+
+.egresso .icons a:hover {
+  cursor: pointer;
+}
+
+.egresso .icons a img:hover {
+  transition-duration: 0.4s;
+  transform: scale(1.2);
+}
+
+.egresso:hover .info {
+  background-color: transparent;
+}
+
+.egresso .name h2 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-decoration: none;
+}
