@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
     crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Mitr:400,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
   <link rel="stylesheet" href="css/main.css">
 </head>
 
@@ -16,69 +17,72 @@
   <header>
     <div class="logoifpb d-flex bd-highlight mb-3">
       <img src="img/LogoIF.png" alt="Logo IFPB" class="logoif mr-auto bd-highlight">
-      <div class="bd-highlight">
+      <!-- <div class="bd-highlight">
           <ul class="nav justify-content-end">
             <li class="nav-item">
-              <a class="nav-link active" href="#">O Projeto</a>
+              <a class="nav-link active" href="#">Cadastre-se</a>
             </li>
           </ul>
-        </div>
+        </div> -->
     </div>
   </header>
-  <div class="filtro">    
-      <div class="input-group mb-3">
-          <!-- <input id="search-value-fake" type="text" class="size--lg" name="query" placeholder="Pesquisar todos os recursos" value="" autocomplete="off" min="2" required=""> -->
-          <div id="" class="autocomplete" style="top: 100%; left: 0px;"></div>
-        </div> 
+  <div class="filter container">
+    <div class="search row justify-content-md-center">
+        <input class="search-input" type="search" placeholder="Pesquise pelo nome" aria-label="Search">
+    </div>
+    <div class="lista">
+      <ul class="list-group list-group-horizontal">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">CAMPUS</a>
+            <div class="dropdown-menu campus">
+              <a class="dropdown-item" href="#">JP</a>
+              <a class="dropdown-item" href="#">Cabedelo</a>
+              <a class="dropdown-item" href="#">CG</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">CURSO</a>
+            <div class="dropdown-menu curso"></div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">TURMA</a>
+            <div class="dropdown-menu turma"></div>
+        </li>
+        <!-- <li class="list-group-item">CURSO</li>
+        <li class="list-group-item">TURMA</li> -->
+      </ul>
+    </div>
+
+  </div>
+  <div class="tittle">
+      <h1 style="font-weight: 100"><b style="font-weight: bold; color: #114a11">Egressos do IFPB</b>
+      </h1>
+      <p>O objetivo deste repositório consiste em exibir os alunos egressos do IFPB.</p>
+    
+  </div>
+
+
+
+  <div class="egressos">
+      <div class="egresso">
+          <figure style="background-image: url(img/egressos/041037103.jpg);">
+            <div class="info">
+              <p>Nome Sobrenome</p>
+              </div>
+            <!-- <img src="img/egressos/09571013.jpg" alt="nomeCompactado"> -->
+          </figure>
+          <div class="icons card-hover">
+              lin + git + f + i + tt
+          </div>
+
+          <div class="name card-hover">
+            <h2>Nome Sobrenome</h2>
+            <p>Curso: Sistemas para Internet <br>Campus: JP<br>Turma: 2018.1</p>
+          </div>
+        </div>
+
   </div>
   
-  <div class="row justify-content-md-center">
-    <!-- <input type="nome" class="input_nome"> -->
-
-
-    <input class="form-control mx-sm-3 rounded-pill" type="text" placeholder="Pesquise por nome">
-  </div>
-
-  <div class="filtros container">
-    <form class="container">
-      <div class="row justify-content-md-center">
-        <div class="col-auto my-1 col ">
-          <select class="turma custom-select mr-sm-2 rounded-pill " id="inlineFormCustomSelect">
-            <option selected>TURMA...</option>
-            <option value="0">One</option>
-            <option value="1">Two</option>
-            <option value="2">Three</option>
-          </select>
-        </div>
-        <div class="col-auto my-1 col ">
-          <select class="curso custom-select mr-sm-2 rounded-pill " id="inlineFormCustomSelect">
-            <option selected>CURSO...</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
-        </div>
-        <div class="col-auto my-1 col ">
-          <select class="campus custom-select mr-sm-2 rounded-pill " id="inlineFormCustomSelect">
-            <option selected>CAMPUS...</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
-        </div>
-      </div>
-    </form>
-    <!-- <button type="button" class="btn btn-outline-success rounded-pill">TURMA</button>
-      <button type="button" class="btn btn-outline-success rounded-pill">CURSO</button>
-      <button type="button" class="btn btn-outline-success rounded-pill">CAMPUS</button> -->
-
-  </div>
-  <h1 style="font-weight: 100"><b style="font-weight: bold; color: #114a11">Egressos do IFPB</b>
-  </h1>
-   
-
-
-  <div class="egressos"></div>
   <script src="js/main.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>

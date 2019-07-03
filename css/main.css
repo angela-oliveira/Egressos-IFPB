@@ -18,24 +18,56 @@ header{
   width: 75%;
   margin: auto;
   padding-top: 0.5rem;
-  display: flex;
-  flex-direction: row;
 }
 .logoif {
   height: 30px;
-  text-align: center;
+  margin: auto;
 }
-/*
-.filtro{
-  height: 315px;
-  background-image: linear-gradient(to right,rgba(54, 214, 214, .6), rgba(54,214,169,1))/*, url(../img/6394.jpg)*/;/*
-  background-position-x: -300px;
-  background-position-y: -100px;
-  background-size: 123%;
-  background-attachment: fixed;
-  /* background-repeat: no-repeat; */
-/*  
-}*/
+.filter {
+  margin-top: 4rem;
+  width: 40%;
+}
+.search{
+  margin: auto;
+  box-shadow: 3px -1px 28px -4px rgba(158,158,158,0.71);
+}
+.lista {
+  background-image: linear-gradient(to right, #26a626 , #36d6a9);
+  border-radius: 10px;
+  box-shadow: 3px -1px 28px -4px rgba(158,158,158,0.71);
+}
+.form-control{
+  width: 40%;
+}
+.search-input{
+  background-color: white;
+  /* width: max-content; */
+  min-width: 100%;
+  height:3rem;
+  box-sizing: border-box;
+  border: none;
+  /* border: 2px solid #ccc; */
+  border-radius: 10px;
+  font-size: 16px;
+  background-image: url('../img/searchicon.png');
+  background-position: right; 
+  background-position-x: 97%;
+  background-repeat: no-repeat;
+  /* padding-left: 3%; */
+  padding: 3%;
+}
+.list-group{
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+}
+.nav-link{
+  color: #fff;
+}
+.nav-link:hover{
+  color: #114a11;
+}
+
 .input-group{
   width: 35%;
 }
@@ -44,10 +76,15 @@ header{
   border: none;
 }
 
-
 h1 {
   text-align: center;
   font-weight: 100;
+  margin-top: 3rem;
+}
+.tittle{
+  width: 40%;
+  margin: auto;
+  text-align: center;
 }
 
 .input_nome{
@@ -71,26 +108,27 @@ h1 {
 
 .egressos {
   display: grid;
-  grid-template-columns: 300px;
+  grid-template-columns: repeat(4, 200px);
   grid-gap: 2rem;
   justify-content: center;
+  color: #fff
 }
 
 @media (min-width: 610px) {
   .egressos {
-    grid-template-columns: repeat(2, 300px);
+    grid-template-columns: repeat(2, 200px);
   }
 }
 
 @media (min-width: 910px) {
   .egressos {
-    grid-template-columns: repeat(3, 300px);
+    grid-template-columns: repeat(4, 200px);
   }
 }
 
 @media (min-width: 1920px) {
   .egressos {
-    grid-template-columns: repeat(4, 300px);
+    grid-template-columns: repeat(4, 200px);
   }
 }
 
@@ -99,7 +137,8 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 300px;
+  height: 200px;
+  width: 200px;
   transition: all .4s;
   /* border-radius: 500px; */
   overflow: hidden;
@@ -113,8 +152,10 @@ h1 {
   position: absolute;
   width: 100%;
   height: 100%;
-  opacity: .4;
+  opacity: .7;
   transition: all .4s;
+  /* background-image: url(../img/egressos/041037103.jpg); */
+  background-size: 100%;
 }
 
 .egresso figure img {
@@ -123,16 +164,37 @@ h1 {
 
 .egresso:hover figure {
   opacity: 1;
+  background-color: rgba(54, 214, 212);
+  background-blend-mode: multiply;
 }
-
 .egresso .info {
-  position: absolute;
+  position: relative;
   width: 100%;
-  height: 100%;
-  display: flex;
+  height: 25%;
+  /* opacity: 1; */
+  /* display: flex;
   justify-content: center;
-  background-color: rgba(123, 208, 193, .15);
-  transition: all .4s;
+  transition: all .4s; */
+  z-index: 1;
+  background-color: rgba(17, 74, 17, 0.4);
+  background-blend-mode: multiply;
+  margin-top: 148px;
+  text-align: center;
+}
+.info p {
+  padding-top: 0.5rem
+}
+.egresso:hover .info p{
+  display: none;
+}
+.card-hover{
+  display: none;
+}
+.egresso:hover .card-hover{
+  display: block;
+}
+.card-hover p{
+  text-align: left;
 }
 
 .egresso .icons {
@@ -146,24 +208,27 @@ h1 {
 
 .egresso .name {
   position: absolute;
-  bottom: 60px;
+  /* bottom: 60px; */
   text-align: center;
-  width: 98%;
+  width: 95%;
   margin: 0 auto;
-  color: #fff;
 }
 
 .egresso .icons a {
   margin-left: 10px;
 }
+.egresso .icons a i{
+  color: #fff;
+  font-size: 20px;
+}
 
-.egresso .icons a:hover {
+.egresso .icons a i:hover {
   cursor: pointer;
 }
 
-.egresso .icons a img:hover {
+.egresso .icons a i:hover {
   transition-duration: 0.4s;
-  transform: scale(1.2);
+  transform: scale(1.5);
 }
 
 .egresso:hover .info {
