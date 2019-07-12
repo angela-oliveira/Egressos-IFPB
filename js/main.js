@@ -4,26 +4,54 @@ const campus = document.querySelector('.campus')
 
 const filter_turma = new Set()
 const filter_curso = new Set()
-const filter_campus = new Set()
+let filter_campus = new Array()
+let egressosJson;
 
-criar_filtro_campus()
+const utils = {
+  'ifpb-jp': 'João Pessoa',
+  'ifpb-cz': 'Cajazeiras'
+}
 
+//Criar um array com os dados expecificos para cada filtro
 
+const exibir_filtros = i => `<a class="dropdown-item cidade" href="#">${utils[i]}</a>`
+const criar_filtro_campus = () => {
+  for (f of filter_campus) {
+    campus.insertAdjacentHTML('beforeend', exibir_filtros(f))
+  }
+}
+
+const getEgressosByCampus = campus => egressosJson.filter(egresso => utils[egresso.campus] == campus)
 
 fetch('data/egressos.json')
   .then(res => res.json())
-  .then(json => exibeEgressos(json))
-  .then(json => array_filtro(json))
+  .then(json => {
+    egressosJson = json
+    exibeEgressos(json)
+    filter_campus = [...new Set(json.map(x => x.campus))]
+    criar_filtro_campus()
+
+
+    const cidades = document.querySelectorAll('.cidade')
+
+    cidades.forEach(cidade => {
+      cidade.addEventListener('click', (event) => {
+        exibeEgressos(getEgressosByCampus(cidade.textContent))
+      })
+    })
+  })
+
 
 // essa função irá escolher quais card serão exibidos (apenas aqueles que tem linkedin), ordenar, e chamar a função mountCard para exibir
 function exibeEgressos(egressos) {
   const egressosContainer = document.querySelector(".egressos")
+  egressosContainer.innerHTML = ''
   const view = egressos
     .filter(e => e.hasOwnProperty("linkedin") && e.hasOwnProperty("egresso"))
     .sort((a, b) => a.nomeCompactado.localeCompare(b.nomeCompactado))
     .map(e => mountCard(e))
     .join('')
-    
+
   egressosContainer.innerHTML = view
 }
 // Montar o card no html
@@ -54,9 +82,8 @@ function mountCard(person) {
   if (person.hasOwnProperty("twitter")) {
     twitter = `<a target="_blank" href="${person.twitter}"><i class="fab fa-twitter"></i></a>`
   }
-  let truma_card = person.id //Precisa selecionar os quatro primeiros numeros para exibir a turma
-  
 
+  let turma_card = `${person.id.substring(0, 4)}.${person.id.substring(4, 5)}`
   const card = `<div class="egresso">
   <figure style="background-image: url(img/egressos/${person.hasOwnProperty("avatar") ? person.avatar : 'placeholder.jpg'});">
     <div class="info">
@@ -69,39 +96,52 @@ function mountCard(person) {
 
   <div class="name card-hover">
     <h2>${person.nomeCompactado}</h2>
-    <p>Curso: ${person.curso} <br>Campus: ${person.campus}<br>Turma: ${truma_card}</p>
+      <p>Curso: ${person.curso} <br>Campus: ${utils[person.campus]}<br>Turma: ${turma_card}</p>
   </div>
 </div>`
 
   return card
 }
-//Criar um array com os dados expecificos para cada filtro
-function array_filtro(dados){
-  filter_campus.add(dados.filter(x => x.campus))
 
+//Menu alfabético
+
+const ma_abc = document.querySelector('.ma_abc')
+let array_ma_abc = ["#", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "U", "V", "W", "X", "Y", "Z"]
+criar_ma_abc()
+
+const compareString = (name, search) => name.search(search) == -1 ? false : true
+const getByParcialName = search => egressosJson.filter(egresso => compareString(egresso.nomeCompactado, new RegExp(`^${search}`, 'gi')))
+
+
+function criar_ma_abc() {
+  ma_abc.innerHTML = ''
+  array_ma_abc.map(v => ma_abc.insertAdjacentHTML('beforeend', exibir_ma_abc(v)))
+
+  // EventListener Letter
+  const letters = document.querySelectorAll('.letter')
+  letters.forEach(letter => {
+
+    letter.addEventListener('click', (event) => {
+      
+      let search = letter.textContent
+      if (search == '#')
+        exibeEgressos(egressosJson)
+      else
+        exibeEgressos(getByParcialName(search))
+    })
+  })
 }
-function exibir_filtros(i){
-  return `<a class="dropdown-item" href="#">${i}</a>`
-}
-function criar_filtro_campus(){
-  campus.innerHTML = ''
-  for(f of filter_campus){
-    campus.insertAdjacentHTML('beforeend',exibir_filtros(f))
-  }
+function exibir_ma_abc(inf) {
+  return `<a href="#${inf}" data-letter="${inf}" class="letter">${inf}</a>`
 }
 
-// function array_filter(){
-//   for(eg of )
-// }
+// EventListener Search
+const searchInput = document.querySelector('.search-input')
+searchInput.addEventListener('keyup', (event) => {
+  let search = searchInput.value
+  if (search == '')
+    exibeEgressos(egressosJson)
+  else
+    exibeEgressos(getByParcialName(search))
 
-// function filtro_turma (){
-//   turma.innerHTML = ''
-//   for(f of filter_turma){
-//     turma.insertAdjacentHTML('beforeend',exibir_Filtro(f))
-//   }
-// }
-
-// function exibir_Filtro(dados){
-//   return `<option selected>CURSO...</option>`
-
-// }
+})

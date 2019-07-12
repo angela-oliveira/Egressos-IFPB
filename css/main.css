@@ -104,7 +104,27 @@ h1 {
   color: #fff;
   border-color: #efefef;
 }
-
+.ma_abc{
+  text-align: center;
+  margin-bottom: 15px;
+  /* min-width: 100%; */
+  /* width: 100%; */
+}
+.ma_abc a{
+  color: #114a11;
+  /* border-radius: 50%; */
+  line-height: 25px;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  display: inline-block;
+  margin: 0.25rem;
+  /* text-decoration: #26a626; */
+}
+.ma_abc a.on{
+  /* background: #36d6a9; */
+  color: rgba(158,158,158);
+}
 
 .egressos {
   display: grid;
@@ -113,16 +133,34 @@ h1 {
   justify-content: center;
   color: #fff
 }
+@media (max-width:610px){
+  .egressos {
+    grid-template-columns: repeat(1, 200px);
+  }
+  .filter {
+    width: 80%;
+  }
+  .list-group-horizontal {
+    flex-direction: column;
+}
 
+}
 @media (min-width: 610px) {
   .egressos {
     grid-template-columns: repeat(2, 200px);
   }
+  .filter {
+    width: 80%;
+  }
+
 }
 
 @media (min-width: 910px) {
   .egressos {
     grid-template-columns: repeat(4, 200px);
+  }
+  .filter {
+    width: 40%;
   }
 }
 
