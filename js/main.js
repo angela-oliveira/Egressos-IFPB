@@ -2,43 +2,70 @@ const turma = document.querySelector('.turma')
 const curso = document.querySelector('.curso')
 const campus = document.querySelector('.campus')
 
-const filter_turma = new Set()
-const filter_curso = new Set()
+let filter_turma = new Array()
+let filter_curso = new Array()
 let filter_campus = new Array()
 let egressosJson;
 
 const utils = {
   'ifpb-jp': 'João Pessoa',
-  'ifpb-cz': 'Cajazeiras'
+  'ifpb-cz': 'Cajazeiras',
+  'ifpb-cg': 'Campina Grande',
+  'ifpb-cb': 'Cabedelo'
+}
+
+const utils_curso = {
+  'cstsi':'Sistemas para Internet',
+  'cstrc': 'Redes de Computadores'
 }
 
 //Criar um array com os dados expecificos para cada filtro
 
-const exibir_filtros = i => `<a class="dropdown-item cidade" href="#">${utils[i]}</a>`
+const exibir_filtros_campus = i => `<a class="dropdown-item cidade" href="#">${utils[i]}</a>`
+const exibir_filtros_cursos = i => `<a class="dropdown-item cursos" href="#">${utils_curso[i]}</a>`
+// const exibir_filtros_turmas = i => `<a class="dropdown-item turmas" href="#">${utils[i]}</a>`
+
+//campus
 const criar_filtro_campus = () => {
   for (f of filter_campus) {
-    campus.insertAdjacentHTML('beforeend', exibir_filtros(f))
+    campus.insertAdjacentHTML('beforeend', exibir_filtros_campus(f))
   }
 }
-
 const getEgressosByCampus = campus => egressosJson.filter(egresso => utils[egresso.campus] == campus)
+
+//curso
+const criar_filtro_curso = () => {
+  for(e of filter_curso){
+    curso.insertAdjacentHTML('beforeend',exibir_filtros_cursos(e))
+  }
+}
+const getEgressosByCurso = curso => egressosJson.filter(egresso => utils_curso[egresso.curso] == curso)
 
 fetch('data/egressos.json')
   .then(res => res.json())
   .then(json => {
     egressosJson = json
     exibeEgressos(json)
+
+    //filtro campus
     filter_campus = [...new Set(json.map(x => x.campus))]
     criar_filtro_campus()
-
-
     const cidades = document.querySelectorAll('.cidade')
-
+    const cursos = document.querySelectorAll('.cursos')
     cidades.forEach(cidade => {
       cidade.addEventListener('click', (event) => {
         exibeEgressos(getEgressosByCampus(cidade.textContent))
       })
     })
+    //filtro curso
+    // filter_curso = [...new Set(json.map(x => x.curso))]
+    // criar_filtro_curso()
+    // const cursos = document.querySelectorAll('cursos')
+    // cursos.forEach(bycurso => {
+    //   bycurso.addEventListener('click', (event) => {
+    //     exibeEgressos(getEgressosByCurso(bycurso.textContent))
+    //   })
+    // })
   })
 
 
@@ -103,7 +130,7 @@ function mountCard(person) {
   return card
 }
 
-//Menu alfabético
+//Menu Letter
 
 const ma_abc = document.querySelector('.ma_abc')
 let array_ma_abc = ["#", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "U", "V", "W", "X", "Y", "Z"]
@@ -134,6 +161,7 @@ function criar_ma_abc() {
 function exibir_ma_abc(inf) {
   return `<a href="#${inf}" data-letter="${inf}" class="letter">${inf}</a>`
 }
+
 
 // EventListener Search
 const searchInput = document.querySelector('.search-input')
