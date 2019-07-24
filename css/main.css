@@ -142,7 +142,7 @@ h1 {
 }
 @media (min-width: 1440px) {
   .egressos {
-    grid-template-columns: repeat(4, 200px);
+    grid-template-columns: repeat(5, 200px);
   }
 }
 @media (min-width: 1920px) {
@@ -159,7 +159,6 @@ h1 {
   height: 200px;
   width: 200px;
   transition: all .4s;
-  /* border-radius: 500px; */
   overflow: hidden;
 }
 

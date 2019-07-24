@@ -57,15 +57,15 @@ fetch('data/egressos.json')
         exibeEgressos(getEgressosByCampus(cidade.textContent))
       })
     })
-    //filtro curso
-    // filter_curso = [...new Set(json.map(x => x.curso))]
-    // criar_filtro_curso()
+    // filtro curso
+    filter_curso = [...new Set(json.map(x => x.curso))]
+    criar_filtro_curso() 
     // const cursos = document.querySelectorAll('cursos')
-    // cursos.forEach(bycurso => {
-    //   bycurso.addEventListener('click', (event) => {
-    //     exibeEgressos(getEgressosByCurso(bycurso.textContent))
-    //   })
-    // })
+    cursos.forEach(bycurso => {
+      bycurso.addEventListener('click', (event) => {
+        exibeEgressos(getEgressosByCurso(bycurso.textContent))
+      })
+    })
   })
 
 
@@ -136,6 +136,7 @@ const ma_abc = document.querySelector('.ma_abc')
 let array_ma_abc = ["#", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "U", "V", "W", "X", "Y", "Z"]
 criar_ma_abc()
 
+  //função pesquisar
 const compareString = (name, search) => name.search(search) == -1 ? false : true
 const getByParcialName = search => egressosJson.filter(egresso => compareString(egresso.nomeCompactado, new RegExp(`^${search}`, 'gi')))
 
@@ -161,7 +162,7 @@ function criar_ma_abc() {
 function exibir_ma_abc(inf) {
   return `<a href="#${inf}" data-letter="${inf}" class="letter">${inf}</a>`
 }
-
+ 
 
 // EventListener Search
 const searchInput = document.querySelector('.search-input')
