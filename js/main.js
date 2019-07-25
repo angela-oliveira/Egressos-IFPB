@@ -23,7 +23,7 @@ const utils_curso = {
 
 const exibir_filtros_campus = i => `<a class="dropdown-item cidade" href="#">${utils[i]}</a>`
 const exibir_filtros_cursos = i => `<a class="dropdown-item cursos" href="#">${utils_curso[i]}</a>`
-// const exibir_filtros_turmas = i => `<a class="dropdown-item turmas" href="#">${utils[i]}</a>`
+const exibir_filtros_turmas = i => `<a class="dropdown-item turmas" href="#">${i}</a>`
 
 //campus
 const criar_filtro_campus = () => {
@@ -41,17 +41,27 @@ const criar_filtro_curso = () => {
 }
 const getEgressosByCurso = curso => egressosJson.filter(egresso => utils_curso[egresso.curso] == curso)
 
+//turma
+const criar_filtro_turma = () => {
+  for(g of filter_turma){
+    turma.insertAdjacentHTML('beforeend', exibir_filtros_turmas(g))
+  }
+}
+const getEgressosByTurma = curso => egressosJson.filter(egresso => turma_card)
+
 fetch('data/egressos.json')
   .then(res => res.json())
   .then(json => {
     egressosJson = json
     exibeEgressos(json)
 
+    //filtros
+    const cidades = document.querySelectorAll('.cidade')
+    const cursos = document.querySelectorAll('.cursos')
+    const turmas = document.querySelectorAll('.turmas')
     //filtro campus
     filter_campus = [...new Set(json.map(x => x.campus))]
     criar_filtro_campus()
-    const cidades = document.querySelectorAll('.cidade')
-    const cursos = document.querySelectorAll('.cursos')
     cidades.forEach(cidade => {
       cidade.addEventListener('click', (event) => {
         exibeEgressos(getEgressosByCampus(cidade.textContent))
@@ -60,12 +70,21 @@ fetch('data/egressos.json')
     // filtro curso
     filter_curso = [...new Set(json.map(x => x.curso))]
     criar_filtro_curso() 
-    // const cursos = document.querySelectorAll('cursos')
+    // const curso  s = document.querySelectorAll('cursos')
     cursos.forEach(bycurso => {
       bycurso.addEventListener('click', (event) => {
         exibeEgressos(getEgressosByCurso(bycurso.textContent))
       })
     })
+    // filtro turma
+    filter_turma = [...new Set(json.map(x => x.turma))]
+    criar_filtro_turma()
+    turmas.forEach(byturma => {
+      byturma.addEventListener('click', (event) => {
+        exibeEgressos(getEgressosByTurma(byturma.textContent))
+      })
+    })
+
   })
 
 
@@ -82,6 +101,7 @@ function exibeEgressos(egressos) {
   egressosContainer.innerHTML = view
 }
 // Montar o card no html
+let turma_card;
 function mountCard(person) {
 
   let github = ``
@@ -110,7 +130,9 @@ function mountCard(person) {
     twitter = `<a target="_blank" href="${person.twitter}"><i class="fab fa-twitter"></i></a>`
   }
 
-  let turma_card = `${person.id.substring(0, 4)}.${person.id.substring(4, 5)}`
+  turma_card = `${person.id.substring(0, 4)}.${person.id.substring(4, 5)}`
+
+
   const card = `<div class="egresso">
   <figure style="background-image: url(img/egressos/${person.hasOwnProperty("avatar") ? person.avatar : 'placeholder.jpg'});">
     <div class="info">
