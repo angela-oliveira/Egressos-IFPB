@@ -6,10 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Egressos do IFPB</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Mitr:400,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
+    integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
   <link rel="stylesheet" href="css/main.css">
 </head>
 
@@ -33,49 +34,78 @@
   <!-- Filtros de pesquisa -->
   <div class="filter container">
     <div class="search row justify-content-md-center">
-        <input class="search-input" type="search" placeholder="Pesquise pelo nome" aria-label="Search">
+      <input class="search-input" type="search" placeholder="Pesquise pelo nome" aria-label="Search">
     </div>
     <div class="lista">
       <ul class="list-group list-group-horizontal">
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">CAMPUS</a>
-            <div class="dropdown-menu campus">
-            </div>
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+            aria-expanded="false">CAMPUS</a>
+          <div class="dropdown-menu campus">
+          </div>
         </li>
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">CURSO</a>
-            <div class="dropdown-menu curso"></div>
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+            aria-expanded="false">CURSO</a>
+          <div class="dropdown-menu curso"></div>
         </li>
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">TURMA</a>
-            <div class="dropdown-menu turma"></div>
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+            aria-expanded="false">TURMA</a>
+          <div class="dropdown-menu turma"></div>
         </li>
       </ul>
-     </div>
-     <div class="ma_abc"></div>
+    </div>
+    <div class="ma_abc"></div>
   </div>
 
 
 
   <!-- Texto da página (Alterar texto) -->
   <div class="tittle">
-      <h1 style="font-weight: 100"><b style="font-weight: bold; color: #114a11">Egressos do IFPB</b>
-      </h1>
-      <p>O objetivo deste repositório consiste em exibir os alunos egressos do IFPB.</p>
+    <h1 style="font-weight: 100"><b style="font-weight: bold; color: #114a11">Egressos do IFPB</b>
+    </h1>
+    <!-- <p>O objetivo deste repositório consiste em exibir os alunos egressos do IFPB.</p> -->
+    <p>...</p>
   </div>
 
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+        aria-controls="nav-home" aria-selected="true">Egressos</a>
+      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+        aria-controls="nav-profile" aria-selected="false">Alunos</a>
+      <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
+        aria-controls="nav-contact" aria-selected="false">Cadastro</a>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+
+    <!-- Egressos -->
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
 
-  <!-- Cards egressos -->
-  <div class="egressos">
-      <div class="egresso">
+      <!-- Cards egressos -->
+      <div class="egressos">
+
+      </div>
+
+    </div>
+
+    <!-- Alunos -->
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+
+      <!-- Cards alunos -->
+      <div class="egressos aluno">
+        <div class="egresso">
           <figure style="background-image: url(img/egressos/041037103.jpg);">
             <div class="info">
               <p>Nome Sobrenome</p>
             </div>
           </figure>
           <div class="icons card-hover">
-              lin + git + f + i + tt
+            lin + git + f + i + tt
           </div>
 
           <div class="name card-hover">
@@ -83,15 +113,79 @@
             <p>Curso: Sistemas para Internet <br>Campus: JP<br>Turma: 2018.1</p>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- Cadastros -->
+    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+
+      <div class="form-style-5">
+        <form>
+          <fieldset>
+            <legend><span class="number">1</span> Dados</legend>
+            <input type="text" name="field1" placeholder="Matrícula *">
+            <input type="text" name="field2" placeholder="Nome Completo *">
+            <input type="text" name="field3" placeholder="Nome Compactado *">
+            <input type="email" name="field4" placeholder="e-mail *">
+            <!-- <textarea name="field3" placeholder="About yourself"></textarea> -->
+            <label for="job">Curso:</label>
+            <select id="job" name="field5">
+              <optgroup label="João Pessoa">
+                <option value="cstsi">Sistemas para Internet</option>
+                <option value="cstrc">Redes de Computadores</option>
+                <option value="ee">Engenharia Eletrica</option>
+                <option value="ads">Análize e Desenhvolvimento de Sistemas</option>
+                
+              </optgroup>
+              <optgroup label="Cajazeiras">
+                <option value="cstt">Telecomunicações</option>
+              </optgroup>
+            </select>
+            <div class="situacao_cadastro">
+              <div>
+                <input type="radio"name="situacao" value="egresso" id="input_egresso" checked>
+                <label for="egresso">Egresso</label>
+              </div>
+              <div>
+                <input type="radio"name="situacao" value="aluno" id="input_aluno" checked>
+                <label for="aluno">Aluno</label>
+              </div>
+            </div>
+              
+          </fieldset>
+          <fieldset>
+            
+          <label for="foto" style="margin-top: 1rem;">Envie sua foto:</label>
+          <input type="file" name="file" class="foto">
+            <legend><span class="number">2</span> Informações adicionais (Adicione os links)</legend>
+            <input type="text" name="field1" placeholder="Linkedin">
+            <input type="text" name="field1" placeholder="Github">
+            <input type="text" name="field1" placeholder="Facebook">
+            <input type="text" name="field1" placeholder="Lattes">
+            <input type="text" name="field1" placeholder="ResearchGate">
+            <input type="text" name="field1" placeholder="Twitter">
+            <input type="text" name="field1" placeholder="Instagram">
+            <textarea name="field3" placeholder="Observação"></textarea>
+          </fieldset>
+          <input type="submit" value="Cadastrar" />
+          <input type="submit" value="Atualizar" />
+        </form>
+      </div>
+    </div>
   </div>
 
-  
+
+
+
   <script src="js/main.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 </body>
 

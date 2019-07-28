@@ -91,14 +91,21 @@ header{
 h1 {
   text-align: center;
   font-weight: 100;
-  margin-top: 3rem;
+  /* margin-top: 2rem; */
 }
 .tittle{
   width: 40%;
   margin: auto;
   text-align: center;
 }
+.nav-tabs{
+  display: flex;
+  justify-content: center;
 
+}
+.nav-tabs > .nav-link {
+  color: #114a11;
+}
 
 
 
@@ -108,7 +115,8 @@ h1 {
   grid-template-columns: repeat(4, 200px);
   grid-gap: 2rem;
   justify-content: center;
-  color: #fff
+  color: #fff;
+  margin-top: 2rem;
 }
 @media (max-width:610px){
   .egressos {
@@ -252,4 +260,126 @@ h1 {
   text-transform: uppercase;
   font-weight: bold;
   text-decoration: none;
+}
+
+
+/*Cadastro*/
+.situacao_cadastro{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin:auto;
+}
+.situacao_cadastro > div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.situacao_cadastro > div > label{
+  margin-bottom: 0%;
+  margin-left: 0.5rem;
+}
+.form-style-5{
+	max-width: 500px;
+	padding: 10px 20px;
+	background: #f4f7f8;
+	margin: 10px auto;
+	padding: 20px;
+	background: #f4f7f8;
+	border-radius: 8px;
+	/* font-family: Georgia, "Times New Roman", Times, serif; */
+}
+.form-style-5 fieldset{
+  border: none;
+  margin-bottom: 1.5rem;
+}
+.form-style-5 legend {
+	font-size: 1.4em;
+  margin-bottom: 10px;
+}
+.form-style-5 label {
+	display: block;
+	margin-bottom: 8px;
+}
+.form-style-5 input[type="text"],
+.form-style-5 input[type="date"],
+.form-style-5 input[type="datetime"],
+.form-style-5 input[type="email"],
+.form-style-5 input[type="number"],
+.form-style-5 input[type="search"],
+.form-style-5 input[type="time"],
+.form-style-5 input[type="url"],
+.form-style-5 textarea,
+.form-style-5 select {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	background: rgba(255,255,255,.1);
+	border: none;
+	border-radius: 4px;
+	font-size: 15px;
+	margin: 0;
+	outline: 0;
+	padding: 10px;
+	width: 100%;
+	box-sizing: border-box; 
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box; 
+	background-color: #e8eeef;
+	color:#8a97a0;
+	-webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+	box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+	margin-bottom: 30px;
+}
+.form-style-5 input[type="text"]:focus,
+.form-style-5 input[type="date"]:focus,
+.form-style-5 input[type="datetime"]:focus,
+.form-style-5 input[type="email"]:focus,
+.form-style-5 input[type="number"]:focus,
+.form-style-5 input[type="search"]:focus,
+.form-style-5 input[type="time"]:focus,
+.form-style-5 input[type="url"]:focus,
+.form-style-5 textarea:focus,
+.form-style-5 select:focus{
+	background: #d2d9dd;
+}
+.form-style-5 select{
+	-webkit-appearance: menulist-button;
+	height:35px;
+}
+.form-style-5 .number {
+	background: #1abc9c;
+	color: #fff;
+	height: 30px;
+	width: 30px;
+	display: inline-block;
+	font-size: 0.8em;
+	margin-right: 4px;
+	line-height: 30px;
+	text-align: center;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+	border-radius: 15px 15px 15px 0px;
+}
+.foto{
+  margin-bottom: 2rem;
+}
+.form-style-5 input[type="submit"],
+.form-style-5 input[type="button"]
+{
+	position: relative;
+	display: block;
+	padding: 19px 39px 18px 39px;
+	color: #FFF;
+	margin: 0 auto;
+	background: #1abc9c;
+	font-size: 18px;
+	text-align: center;
+	font-style: normal;
+	width: 100%;
+	border: 1px solid #16a085;
+	border-width: 1px 1px 3px;
+	margin-bottom: 10px;
+}
+.form-style-5 input[type="submit"]:hover,
+.form-style-5 input[type="button"]:hover
+{
+	background: #109177;
 }

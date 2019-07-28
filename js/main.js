@@ -16,14 +16,17 @@ const utils = {
 
 const utils_curso = {
   'cstsi':'Sistemas para Internet',
-  'cstrc': 'Redes de Computadores'
+  'cstrc': 'Redes de Computadores',
+  'Engenharia Eletrica': 'Engenharia Eletrica',
+  'CST EM TELECOMUNICAÇÕES': 'Telecomunicações',
+  'ads': 'Análize e Desenhvolvimento de Sistemas',
+  'cstt': 'Telecomunicações'
 }
 
 //Criar um array com os dados expecificos para cada filtro
 
 const exibir_filtros_campus = i => `<a class="dropdown-item cidade" href="#">${utils[i]}</a>`
 const exibir_filtros_cursos = i => `<a class="dropdown-item cursos" href="#">${utils_curso[i]}</a>`
-const exibir_filtros_turmas = i => `<a class="dropdown-item turmas" href="#">${i}</a>`
 
 //campus
 const criar_filtro_campus = () => {
@@ -42,26 +45,35 @@ const criar_filtro_curso = () => {
 const getEgressosByCurso = curso => egressosJson.filter(egresso => utils_curso[egresso.curso] == curso)
 
 //turma
+
+const exibir_filtros_turmas = i => `<a class="dropdown-item turmas" href="#">${i}</a>`
 const criar_filtro_turma = () => {
-  for(g of filter_turma){
-    turma.insertAdjacentHTML('beforeend', exibir_filtros_turmas(g))
+  let mat = filter_turma.map((v)=>`${v.substring(0,4)}.${v.substring(4,5)}`)
+  let new_mat = [...new Set(mat)]
+  new_mat.sort((a,b)=>a-b)
+  for(g of new_mat){
+
+    if (g[0]==2){
+      turma.insertAdjacentHTML('beforeend', exibir_filtros_turmas(g))
+    }else{
+      
+      turma.insertAdjacentHTML('beforeend', `<a class="dropdown-item cidade" href="#">Indefinido</a>`)
+
+    }
   }
 }
-const getEgressosByTurma = curso => egressosJson.filter(egresso => turma_card)
+const getEgressosByTurma = id => egressosJson.filter(egresso => id == turma_card)
 
 fetch('data/egressos.json')
   .then(res => res.json())
   .then(json => {
     egressosJson = json
     exibeEgressos(json)
-
     //filtros
-    const cidades = document.querySelectorAll('.cidade')
-    const cursos = document.querySelectorAll('.cursos')
-    const turmas = document.querySelectorAll('.turmas')
     //filtro campus
     filter_campus = [...new Set(json.map(x => x.campus))]
     criar_filtro_campus()
+    const cidades = document.querySelectorAll('.cidade')   
     cidades.forEach(cidade => {
       cidade.addEventListener('click', (event) => {
         exibeEgressos(getEgressosByCampus(cidade.textContent))
@@ -70,15 +82,17 @@ fetch('data/egressos.json')
     // filtro curso
     filter_curso = [...new Set(json.map(x => x.curso))]
     criar_filtro_curso() 
-    // const curso  s = document.querySelectorAll('cursos')
+    const cursos = document.querySelectorAll('.cursos')
     cursos.forEach(bycurso => {
       bycurso.addEventListener('click', (event) => {
         exibeEgressos(getEgressosByCurso(bycurso.textContent))
       })
     })
     // filtro turma
-    filter_turma = [...new Set(json.map(x => x.turma))]
+    filter_turma = json.map(x => x.id)
     criar_filtro_turma()
+    
+    const turmas = document.querySelectorAll('.turmas')
     turmas.forEach(byturma => {
       byturma.addEventListener('click', (event) => {
         exibeEgressos(getEgressosByTurma(byturma.textContent))
@@ -131,7 +145,7 @@ function mountCard(person) {
   }
 
   turma_card = `${person.id.substring(0, 4)}.${person.id.substring(4, 5)}`
-
+  let matricula = turma_card[0] == 2? turma_card : 'Indefinido'
 
   const card = `<div class="egresso">
   <figure style="background-image: url(img/egressos/${person.hasOwnProperty("avatar") ? person.avatar : 'placeholder.jpg'});">
@@ -145,7 +159,7 @@ function mountCard(person) {
 
   <div class="name card-hover">
     <h2>${person.nomeCompactado}</h2>
-      <p>Curso: ${person.curso} <br>Campus: ${utils[person.campus]}<br>Turma: ${turma_card}</p>
+      <p>Curso: ${utils_curso[person.curso]} <br>Campus: ${utils[person.campus]}<br>Turma: ${matricula}</p>
   </div>
 </div>`
 
@@ -196,3 +210,7 @@ searchInput.addEventListener('keyup', (event) => {
     exibeEgressos(getByParcialName(search))
 
 })
+
+
+
+
