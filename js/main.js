@@ -205,12 +205,13 @@ function criar_ma_abc() {
   letters.forEach(letter => {
 
     letter.addEventListener('click', (event) => {
-      
+      texto_filtro.innerHTML= ''
       let search = letter.textContent
       if (search == '#')
         exibeEgressos(egressosJson)
       else
         exibeEgressos(getByParcialName(search))
+      
     })
   })
 }
@@ -222,6 +223,7 @@ function exibir_ma_abc(inf) {
 // EventListener Search
 const searchInput = document.querySelector('.search-input')
 searchInput.addEventListener('keyup', (event) => {
+  texto_filtro.innerHTML= ''
   let search = searchInput.value
   if (search == '')
     exibeEgressos(egressosJson)
