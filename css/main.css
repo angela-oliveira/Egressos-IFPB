@@ -158,7 +158,13 @@ h1 {
     grid-template-columns: repeat(6, 200px);
   }
 }
-
+.texto_filtro {
+  margin: 1rem;
+  display: flex;
+}
+.texto_filtro > div{
+  margin: auto;
+}
 .egresso {
   position: relative;
   display: flex;

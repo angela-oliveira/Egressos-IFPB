@@ -1,10 +1,10 @@
-const turma = document.querySelector('.turma')
-const curso = document.querySelector('.curso')
 const campus = document.querySelector('.campus')
+const curso = document.querySelector('.curso')
+const turma = document.querySelector('.turma')
 
-let filter_turma = new Array()
-let filter_curso = new Array()
 let filter_campus = new Array()
+let filter_curso = new Array()
+let filter_turma = new Array()
 let egressosJson;
 
 const utils = {
@@ -27,6 +27,7 @@ const utils_curso = {
 
 const exibir_filtros_campus = i => `<a class="dropdown-item cidade" href="#">${utils[i]}</a>`
 const exibir_filtros_cursos = i => `<a class="dropdown-item cursos" href="#">${utils_curso[i]}</a>`
+const exibir_filtros_turmas = i => `<a class="dropdown-item turmas" href="#">${i}</a>`
 
 //campus
 const criar_filtro_campus = () => {
@@ -45,30 +46,36 @@ const criar_filtro_curso = () => {
 const getEgressosByCurso = curso => egressosJson.filter(egresso => utils_curso[egresso.curso] == curso)
 
 //turma
-
-const exibir_filtros_turmas = i => `<a class="dropdown-item turmas" href="#">${i}</a>`
+let mat
+let new_mat
 const criar_filtro_turma = () => {
-  let mat = filter_turma.map((v)=>`${v.substring(0,4)}.${v.substring(4,5)}`)
-  let new_mat = [...new Set(mat)]
-  new_mat.sort((a,b)=>a-b)
-  for(g of new_mat){
 
+  for(g of new_mat){
     if (g[0]==2){
       turma.insertAdjacentHTML('beforeend', exibir_filtros_turmas(g))
-    }else{
-      
-      turma.insertAdjacentHTML('beforeend', `<a class="dropdown-item cidade" href="#">Indefinido</a>`)
-
     }
   }
+  turma.insertAdjacentHTML('beforeend', `<a class="dropdown-item turmas_indefinido" href="#">Indefinido</a>`)
+
 }
-const getEgressosByTurma = id => egressosJson.filter(egresso => id == turma_card)
+const getEgressosByTurma = id => egressosJson.filter(egresso => `${egresso.id.substring(0,4)}.${egresso.id.substring(4,5)}` == id)
+const getEgressosByTurmas_indefinido = indefinidos => egressosJson.filter(egresso => egresso.id[0]!= 2)
+
+//Exibir filtro expecificado
+
+const texto_filtro = document.querySelector('.texto_filtro')
+const exibir_texto_filtro = (el, t) => `<div>${el} ${t}</div>`
+const criar_texto_filtro = (el, texto) => {
+  texto_filtro.innerHTML= ''
+  texto_filtro.insertAdjacentHTML('beforeend', exibir_texto_filtro(el, texto))
+}
 
 fetch('data/egressos.json')
   .then(res => res.json())
   .then(json => {
     egressosJson = json
     exibeEgressos(json)
+
     //filtros
     //filtro campus
     filter_campus = [...new Set(json.map(x => x.campus))]
@@ -77,6 +84,7 @@ fetch('data/egressos.json')
     cidades.forEach(cidade => {
       cidade.addEventListener('click', (event) => {
         exibeEgressos(getEgressosByCampus(cidade.textContent))
+        criar_texto_filtro('Campus: ',cidade.textContent)
       })
     })
     // filtro curso
@@ -86,16 +94,26 @@ fetch('data/egressos.json')
     cursos.forEach(bycurso => {
       bycurso.addEventListener('click', (event) => {
         exibeEgressos(getEgressosByCurso(bycurso.textContent))
+        criar_texto_filtro('Curso: ',bycurso.textContent)
       })
     })
     // filtro turma
     filter_turma = json.map(x => x.id)
+    mat = filter_turma.map((v)=>`${v.substring(0,4)}.${v.substring(4,5)}`)
+    new_mat = [...new Set(mat)]
+    new_mat.sort((a,b)=>a-b)
     criar_filtro_turma()
-    
     const turmas = document.querySelectorAll('.turmas')
+    const turmas_indefinido = document.querySelectorAll('.turmas_indefinido')
     turmas.forEach(byturma => {
       byturma.addEventListener('click', (event) => {
         exibeEgressos(getEgressosByTurma(byturma.textContent))
+        criar_texto_filtro('Turma: ',byturma.textContent)
+      })
+    })
+    turmas_indefinido.forEach(byturmas_indefinido => {
+      byturmas_indefinido.addEventListener('click', (event)=>{
+        exibeEgressos(getEgressosByTurmas_indefinido(byturmas_indefinido.textContent))
       })
     })
 
@@ -103,8 +121,9 @@ fetch('data/egressos.json')
 
 
 // essa função irá escolher quais card serão exibidos (apenas aqueles que tem linkedin), ordenar, e chamar a função mountCard para exibir
+
+const egressosContainer = document.querySelector(".egressos")
 function exibeEgressos(egressos) {
-  const egressosContainer = document.querySelector(".egressos")
   egressosContainer.innerHTML = ''
   const view = egressos
     .filter(e => e.hasOwnProperty("linkedin") && e.hasOwnProperty("egresso"))
