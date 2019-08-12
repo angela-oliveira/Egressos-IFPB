@@ -29,8 +29,12 @@ header{
 
 
 /* Filtro de pesquisa */
+nav{
+  margin: 2rem;
+}
+
 .filter {
-  margin-top: 4rem;
+  margin-top: 2rem;
   width: 40%;
 }
 .search{
@@ -85,7 +89,18 @@ header{
   color: rgba(158,158,158);
 }
 
+.tab-content {
+  text-align: center;
+}
 
+.skills{
+  display: flex;
+  justify-content: center;
+  /* position: relative; */
+}
+.skills > button{
+  margin: 1rem;
+}
 
 /* Texto da página */
 h1 {
@@ -388,4 +403,18 @@ h1 {
 .form-style-5 input[type="button"]:hover
 {
 	background: #109177;
+}
+
+/* card-completo */
+.card-display{
+  display: none;
+}
+#card-completo{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10000;
+  background: rgba(17, 74, 17, 0.4)
 }

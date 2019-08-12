@@ -134,6 +134,15 @@ function exibeEgressos(egressos) {
     .join('')
 
   egressosContainer.innerHTML = view
+
+  //Event onclcik cards
+  const egressocards = document.querySelectorAll('.egresso')
+  const card_completo = document.querySelector('#card-completo')
+  egressocards.forEach(card => {
+    card.addEventListener('click', (event) => {
+      card_completo.removeAttribute('class')
+    })
+  })
 }
 // Montar o card no html
 let turma_card;
@@ -233,7 +242,3 @@ searchInput.addEventListener('keyup', (event) => {
     exibeEgressos(getByParcialName(search))
 
 })
-
-
-
-
