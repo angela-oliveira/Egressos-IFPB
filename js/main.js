@@ -32,6 +32,9 @@ const exibir_filtros_turmas = i => `<a class="dropdown-item turmas" href="#">${i
 //campus
 const criar_filtro_campus = () => {
   for (f of filter_campus) {
+    console.log(filter_campus)
+    console.log(filter_turma)
+    console.log(filter_curso)
     campus.insertAdjacentHTML('beforeend', exibir_filtros_campus(f))
   }
 }
@@ -132,6 +135,15 @@ function exibeEgressos(egressos) {
     .join('')
 
   egressosContainer.innerHTML = view
+
+  //Event onclcik cards
+  const egressocards = document.querySelectorAll('.egresso')
+  const card_completo = document.querySelector('#card-completo')
+  for (card of egressocards) {
+    card.addEventListener('click', (event) => {
+      card_completo.removeAttribute('class')
+    })
+  }
 }
 // Montar o card no html
 let turma_card;
@@ -231,7 +243,3 @@ searchInput.addEventListener('keyup', (event) => {
     exibeEgressos(getByParcialName(search))
 
 })
-
-
-
-
