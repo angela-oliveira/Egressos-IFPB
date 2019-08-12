@@ -11,8 +11,8 @@ let egressosJson;
 
 //Criar um array com os dados expecificos para cada filtro
 
-const exibir_filtros_campus = i => `<a class="dropdown-item cidade" href="#">${CAMPUS[i]}</a>`
-const exibir_filtros_cursos = i => `<a class="dropdown-item cursos" href="#">${CURSOS[i]}</a>`
+const exibir_filtros_campus = i => `<a class="dropdown-item cidade" href="#">${utils[i]}</a>`
+const exibir_filtros_cursos = i => `<a class="dropdown-item cursos" href="#">${utils_curso[i]}</a>`
 const exibir_filtros_turmas = i => `<a class="dropdown-item turmas" href="#">${i}</a>`
 
 //campus
@@ -21,7 +21,7 @@ const criar_filtro_campus = () => {
     campus.insertAdjacentHTML('beforeend', exibir_filtros_campus(element))
   })
 }
-const getEgressosByCampus = campus => egressosJson.filter(egresso => CAMPUS[egresso.campus] == campus)
+const getEgressosByCampus = campus => egressosJson.filter(egresso => utils[egresso.campus] == campus)
 
 //curso
 const criar_filtro_curso = () => {
@@ -173,7 +173,7 @@ function mountCard(person) {
 
   <div class="name card-hover">
     <h2>${person.nomeCompactado}</h2>
-      <p>Curso: ${CURSOS[person.curso]} <br>Campus: ${CAMPUS[person.campus]}<br>Turma: ${matricula}</p>
+      <p>Curso: ${utils_curso[person.curso]} <br>Campus: ${utils[person.campus]}<br>Turma: ${matricula}</p>
   </div>
 </div>`
 
