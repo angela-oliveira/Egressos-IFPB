@@ -1,3 +1,5 @@
+import {utils, utils_curso} from './utils.mjs'
+
 const campus = document.querySelector('.campus')
 const curso = document.querySelector('.curso')
 const turma = document.querySelector('.turma')
@@ -7,21 +9,21 @@ let filter_curso = new Array()
 let filter_turma = new Array()
 let egressosJson;
 
-const utils = {
-  'ifpb-jp': 'João Pessoa',
-  'ifpb-cz': 'Cajazeiras',
-  'ifpb-cg': 'Campina Grande',
-  'ifpb-cb': 'Cabedelo'
-}
+// const utils = {
+//   'ifpb-jp': 'João Pessoa',
+//   'ifpb-cz': 'Cajazeiras',
+//   'ifpb-cg': 'Campina Grande',
+//   'ifpb-cb': 'Cabedelo'
+// }
 
-const utils_curso = {
-  'cstsi':'Sistemas para Internet',
-  'cstrc': 'Redes de Computadores',
-  'Engenharia Eletrica': 'Engenharia Eletrica',
-  'CST EM TELECOMUNICAÇÕES': 'Telecomunicações',
-  'ads': 'Análize e Desenhvolvimento de Sistemas',
-  'cstt': 'Telecomunicações'
-}
+// const utils_curso = {
+//   'cstsi':'Sistemas para Internet',
+//   'cstrc': 'Redes de Computadores',
+//   'Engenharia Eletrica': 'Engenharia Eletrica',
+//   'CST EM TELECOMUNICAÇÕES': 'Telecomunicações',
+//   'ads': 'Análize e Desenhvolvimento de Sistemas',
+//   'cstt': 'Telecomunicações'
+// }
 
 //Criar um array com os dados expecificos para cada filtro
 
@@ -31,30 +33,30 @@ const exibir_filtros_turmas = i => `<a class="dropdown-item turmas" href="#">${i
 
 //campus
 const criar_filtro_campus = () => {
-  for (f of filter_campus) {
-    campus.insertAdjacentHTML('beforeend', exibir_filtros_campus(f))
-  }
+  filter_campus.forEach(element => {
+    campus.insertAdjacentHTML('beforeend', exibir_filtros_campus(element))
+  })
 }
 const getEgressosByCampus = campus => egressosJson.filter(egresso => utils[egresso.campus] == campus)
 
 //curso
 const criar_filtro_curso = () => {
-  for(e of filter_curso){
-    curso.insertAdjacentHTML('beforeend',exibir_filtros_cursos(e))
-  }
+  filter_curso.forEach(element => {
+    curso.insertAdjacentHTML('beforeend',exibir_filtros_cursos(element))
+  })
 }
+
 const getEgressosByCurso = curso => egressosJson.filter(egresso => utils_curso[egresso.curso] == curso)
 
 //turma
 let mat
 let new_mat
 const criar_filtro_turma = () => {
-
-  for(g of new_mat){
-    if (g[0]==2){
-      turma.insertAdjacentHTML('beforeend', exibir_filtros_turmas(g))
+  new_mat.forEach(element => {
+    if (element[0]==2){
+      turma.insertAdjacentHTML('beforeend', exibir_filtros_turmas(element))
     }
-  }
+  })
   turma.insertAdjacentHTML('beforeend', `<a class="dropdown-item turmas_indefinido" href="#">Indefinido</a>`)
 
 }
