@@ -1,4 +1,9 @@
 import {utils, utils_curso} from './utils.mjs'
+import 'jquery'
+import 'bootstrap'
+import 'popper.js'
+
+// $('#collapse').collapse()
 
 const campus = document.querySelector('.campus')
 const curso = document.querySelector('.curso')
@@ -159,18 +164,20 @@ function exibeEgressos(egressos) {
 
   egressosContainer.innerHTML = view
 
-  //Event onclcik cards
-  const egressocards = document.querySelectorAll('.egresso')
-  const card_completo = document.querySelector('#card-completo')
-  egressocards.forEach(card => {
-    card.addEventListener('click', (event) => {
-      card_completo.removeAttribute('class')
-    })
-  })
+
+  // //Event onclcik cards
+  // const egressocards = document.querySelectorAll('.egresso')
+  // const card_completo = document.querySelector('#card-completo')
+  // egressocards.forEach(card => {
+  //   card.addEventListener('click', (event) => {
+  //     card_completo.removeAttribute('class')
+  //   })
+  // })
 }
 // Montar o card no html
 let turma_card;
 function mountCard(person) {
+  console.log(person)
 
   let github = ``
   let linkedin = ``
@@ -201,7 +208,29 @@ function mountCard(person) {
   turma_card = `${person.id.substring(0, 4)}.${person.id.substring(4, 5)}`
   let matricula = turma_card[0] == 2? turma_card : 'Indefinido'
 
-  const card = `<div class="egresso">
+  const card = `
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color:#000">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ${person.nomeCompactado}
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="egresso egresso${person.id}" data-toggle="modal" data-target="#exampleModal">
   <figure style="background-image: url(img/egressos/${person.hasOwnProperty("avatar") ? person.avatar : 'placeholder.jpg'});">
     <div class="info">
       <p>${person.nomeCompactado}</p>
@@ -266,3 +295,42 @@ searchInput.addEventListener('keyup', (event) => {
     exibeEgressos(getByParcialName(search))
 
 })
+
+let teste = document.querySelector('.teste')
+teste.addEventListener('click', event=> {
+    // console.log(document.querySelector('.egresso20062370361'))
+    egressosJson.forEach(egresso => {
+      let id = `.egresso${egresso.id}`
+      let querySelector = document.querySelector(id)
+      console.log(querySelector)
+      querySelector.addEventListener('click', event =>{
+        console.log(id)
+      })
+    })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// `<div class="egresso-card-completo">
+   
+//    <img src="img/egressos/${idcard.hasOwnProperty("avatar") ? idcard.avatar : 'placeholder.jpg'}" alt="" srcset="">
+//    <div class="text-card-completo">
+//      <h2>${idcard.nomeCompactado}</h2>
+//      <p>Curso: ${idcard.curso}<br>Campus: ${idcard.campus}<br>Turma: ${idcard.id}</p>
+//      <div class="rs">
+//        lin + git + f + i + tt
+//      </div>
+//    </div>
+ 
+//  </div>`
