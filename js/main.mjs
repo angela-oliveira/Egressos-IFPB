@@ -114,7 +114,7 @@ fetch('data/egressos.json')
    let targetId = e.target.id
    // console.log(targetId)
 
-   exibir_card_completo(targetId)
+  //  exibir_card_completo(targetId)
 
    function exibir_card_completo(id_1) {
      card_completo.innerHTML = ''
