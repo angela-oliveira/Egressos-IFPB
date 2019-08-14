@@ -103,6 +103,46 @@ fetch('data/egressos.json')
       })
     })
 
+ //Event onclcik cards
+ const egressocards = document.querySelectorAll('.egresso')
+ const card_completo = document.querySelector('#card-completo')
+
+ const egressoId = document.getElementById('egressos-card') //teste
+ egressoId.addEventListener('click', (e) => {
+
+   // card_completo.removeAttribute('class')
+   let targetId = e.target.id
+   // console.log(targetId)
+
+   exibir_card_completo(targetId)
+
+   function exibir_card_completo(id_1) {
+     card_completo.innerHTML = ''
+     card_completo.removeAttribute('class')
+     const view_2 = egressosJson.filter(i => i.id == id_1)
+     console.log(view_2)
+     const view_3 = montar_card_completo(view_2)
+     card_completo.innerHTML = view_3
+   }
+   function montar_card_completo(idcard) {
+
+     // <figure style="background-image: url(img/egressos/${idcard.hasOwnProperty("avatar") ? idcard.avatar : 'placeholder.jpg'});">
+     const idcards = `<div class="egresso-card-completo">
+   
+   <img src="img/egressos/${idcard.hasOwnProperty("avatar") ? idcard.avatar : 'placeholder.jpg'}" alt="" srcset="">
+   <div class="text-card-completo">
+     <h2>${idcard.nomeCompactado}</h2>
+     <p>Curso: ${idcard.curso}<br>Campus: ${idcard.campus}<br>Turma: ${idcard.id}</p>
+     <div class="rs">
+       lin + git + f + i + tt
+     </div>
+   </div>
+ 
+ </div>`
+     return idcards
+   }
+ })
+
   })
 
 

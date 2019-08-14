@@ -410,11 +410,31 @@ h1 {
   display: none;
 }
 #card-completo{
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: 10000;
-  background: rgba(17, 74, 17, 0.4)
+  background: rgba(6, 27, 6, 0.555)
+}
+
+.egresso-card-completo{
+  /* text-align: center;
+  margin: auto; */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.egresso-card-completo > img{
+  height: 50%;
+}
+.text-card-completo {
+  height: 50%;
+  background-color: #114a11;
+  color: #FFF;
+  padding: 3rem;
 }
