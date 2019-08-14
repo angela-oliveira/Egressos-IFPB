@@ -16,50 +16,61 @@
 
 <body>
 
-  <!-- Hearder com logo (falta botão de cadastro) -->
+  <!-- Hearder com logo-->
   <header>
     <div class="logoifpb d-flex bd-highlight mb-3">
       <img src="img/LogoIF.png" alt="Logo IFPB" class="logoif mr-auto bd-highlight">
-      <!-- <div class="bd-highlight">
-          <ul class="nav justify-content-end">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Cadastre-se</a>
-            </li>
-          </ul>
-        </div> -->
     </div>
   </header>
 
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-name" role="tab"
+        aria-controls="nav-home" aria-selected="true">Nome</a>
+      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-skills" role="tab"
+        aria-controls="nav-profile" aria-selected="false">Skills</a>
+    </div>
+  </nav>
 
+  <div class="tab-content" id="nav-tabContent">
   <!-- Filtros de pesquisa -->
-  <div class="filter container">
-    <div class="search row justify-content-md-center">
-      <input class="search-input" type="search" placeholder="Pesquise pelo nome" aria-label="Search">
+  <div class="tab-pane fade show active" id="nav-name" role="tabpanel" aria-labelledby="nav-home-tab">
+    <div class="filter container">
+      <div class="search row justify-content-md-center">
+        <input class="search-input" type="search" placeholder="Pesquise pelo nome" aria-label="Search">
+      </div>
+      <div class="lista">
+        <ul class="list-group list-group-horizontal">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+              aria-expanded="false">CAMPUS</a>
+            <div class="dropdown-menu campus">
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+              aria-expanded="false">CURSO</a>
+            <div class="dropdown-menu curso"></div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+              aria-expanded="false">TURMA</a>
+            <div class="dropdown-menu turma"></div>
+          </li>
+        </ul>
+      </div>
+      <div class="ma_abc"></div>
     </div>
-    <div class="lista">
-      <ul class="list-group list-group-horizontal">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-            aria-expanded="false">CAMPUS</a>
-          <div class="dropdown-menu campus">
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-            aria-expanded="false">CURSO</a>
-          <div class="dropdown-menu curso"></div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-            aria-expanded="false">TURMA</a>
-          <div class="dropdown-menu turma"></div>
-        </li>
-      </ul>
-    </div>
-    <div class="ma_abc"></div>
   </div>
-
-
+  <!-- Filtro de skills  -->
+  <div class="tab-pane fade skills" id="nav-skills" role="tabpanel" aria-labelledby="nav-profile-tab">
+    <button type="button" class="btn btn-outline-success">Skill</button>
+    <button type="button" class="btn btn-outline-success">Skill</button>
+    <button type="button" class="btn btn-outline-success">Skill</button>
+    <button type="button" class="btn btn-outline-success">Skill</button>
+    <button type="button" class="btn btn-outline-success">Skill</button>
+  </div>
+  </div>
 
   <!-- Texto da página (Alterar texto) -->
   <div class="tittle">
@@ -69,7 +80,7 @@
     <p>...</p>
   </div>
 
-  <nav>
+  <!-- <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
       <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
         aria-controls="nav-home" aria-selected="true">Egressos</a>
@@ -78,7 +89,7 @@
       <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
         aria-controls="nav-contact" aria-selected="false">Cadastro</a>
     </div>
-  </nav>
+  </nav> -->
   <div class="tab-content" id="nav-tabContent">
 
     <!-- Egressos -->
@@ -87,7 +98,7 @@
 
       <!-- Cards egressos -->
       <div class="texto_filtro">
-        
+
       </div>
       <div class="egressos">
 
@@ -138,7 +149,7 @@
                 <option value="cstrc">Redes de Computadores</option>
                 <option value="ee">Engenharia Eletrica</option>
                 <option value="ads">Análize e Desenhvolvimento de Sistemas</option>
-                
+
               </optgroup>
               <optgroup label="Cajazeiras">
                 <option value="cstt">Telecomunicações</option>
@@ -146,11 +157,11 @@
             </select>
             <div class="situacao_cadastro">
               <div>
-                <input type="radio"name="situacao" value="egresso" id="input_egresso" checked>
+                <input type="radio" name="situacao" value="egresso" id="input_egresso" checked>
                 <label for="egresso">Egresso</label>
               </div>
               <div>
-                <input type="radio"name="situacao" value="aluno" id="input_aluno" checked>
+                <input type="radio" name="situacao" value="aluno" id="input_aluno" checked>
                 <label for="aluno">Aluno</label>
               </div>
             </div>
@@ -158,8 +169,8 @@
             <input type="file" name="file" class="foto">
           </fieldset>
           <fieldset>
-            
-          
+
+
             <legend><span class="number">2</span> Informações adicionais (Adicione os links)</legend>
             <input type="text" name="field1" placeholder="Linkedin">
             <input type="text" name="field1" placeholder="Github">
@@ -176,6 +187,8 @@
       </div>
     </div>
   </div>
+
+  <!-- <div id="card-completo" class="card-display">teste</div> -->
 
 
 

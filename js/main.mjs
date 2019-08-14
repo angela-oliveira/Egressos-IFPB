@@ -1,4 +1,4 @@
-import {CAMPUS, CURSOS} from './utils.mjs'
+import {utils, utils_curso} from './utils.mjs'
 
 const campus = document.querySelector('.campus')
 const curso = document.querySelector('.curso')
@@ -11,36 +11,36 @@ let egressosJson;
 
 //Criar um array com os dados expecificos para cada filtro
 
-const exibir_filtros_campus = i => `<a class="dropdown-item cidade" href="#">${CAMPUS[i]}</a>`
-const exibir_filtros_cursos = i => `<a class="dropdown-item cursos" href="#">${CURSOS[i]}</a>`
+const exibir_filtros_campus = i => `<a class="dropdown-item cidade" href="#">${utils[i]}</a>`
+const exibir_filtros_cursos = i => `<a class="dropdown-item cursos" href="#">${utils_curso[i]}</a>`
 const exibir_filtros_turmas = i => `<a class="dropdown-item turmas" href="#">${i}</a>`
 
 //campus
 const criar_filtro_campus = () => {
-  for (f of filter_campus) {
-    campus.insertAdjacentHTML('beforeend', exibir_filtros_campus(f))
-  }
+  filter_campus.forEach(element => {
+    campus.insertAdjacentHTML('beforeend', exibir_filtros_campus(element))
+  })
 }
-const getEgressosByCampus = campus => egressosJson.filter(egresso => CAMPUS[egresso.campus] == campus)
+const getEgressosByCampus = campus => egressosJson.filter(egresso => utils[egresso.campus] == campus)
 
 //curso
 const criar_filtro_curso = () => {
-  for(e of filter_curso){
-    curso.insertAdjacentHTML('beforeend',exibir_filtros_cursos(e))
-  }
+  filter_curso.forEach(element => {
+    curso.insertAdjacentHTML('beforeend',exibir_filtros_cursos(element))
+  })
 }
-const getEgressosByCurso = curso => egressosJson.filter(egresso => CURSOS[egresso.curso] == curso)
+
+const getEgressosByCurso = curso => egressosJson.filter(egresso => utils_curso[egresso.curso] == curso)
 
 //turma
 let mat
 let new_mat
 const criar_filtro_turma = () => {
-
-  for(g of new_mat){
-    if (g[0]==2){
-      turma.insertAdjacentHTML('beforeend', exibir_filtros_turmas(g))
+  new_mat.forEach(element => {
+    if (element[0]==2){
+      turma.insertAdjacentHTML('beforeend', exibir_filtros_turmas(element))
     }
-  }
+  })
   turma.insertAdjacentHTML('beforeend', `<a class="dropdown-item turmas_indefinido" href="#">Indefinido</a>`)
 
 }
@@ -118,6 +118,15 @@ function exibeEgressos(egressos) {
     .join('')
 
   egressosContainer.innerHTML = view
+
+  //Event onclcik cards
+  const egressocards = document.querySelectorAll('.egresso')
+  const card_completo = document.querySelector('#card-completo')
+  egressocards.forEach(card => {
+    card.addEventListener('click', (event) => {
+      card_completo.removeAttribute('class')
+    })
+  })
 }
 // Montar o card no html
 let turma_card;
@@ -164,7 +173,7 @@ function mountCard(person) {
 
   <div class="name card-hover">
     <h2>${person.nomeCompactado}</h2>
-      <p>Curso: ${CURSOS[person.curso]} <br>Campus: ${CAMPUS[person.campus]}<br>Turma: ${matricula}</p>
+      <p>Curso: ${utils_curso[person.curso]} <br>Campus: ${utils[person.campus]}<br>Turma: ${matricula}</p>
   </div>
 </div>`
 
@@ -217,7 +226,3 @@ searchInput.addEventListener('keyup', (event) => {
     exibeEgressos(getByParcialName(search))
 
 })
-
-
-
-
